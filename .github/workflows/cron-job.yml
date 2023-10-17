@@ -1,9 +1,10 @@
 name: Cron Job
 
 on:
-  # Triggers the workflow every 12 hours
+  # Triggers the workflow every 2 minutes
   schedule:
-    - cron: "*/2 * * * *"
+    - cron: "2 * * * *"
+  workflow_dispatch:
 
 jobs:
   # This workflow contains a single job called "cron"

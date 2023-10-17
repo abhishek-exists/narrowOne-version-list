@@ -3,7 +3,7 @@ name: Cron Job
 on:
   # Triggers the workflow every 12 hours
   schedule:
-    - cron: "0 */12 * * *"
+    - cron: "*/2 * * * *"
 
 jobs:
   # This workflow contains a single job called "cron"

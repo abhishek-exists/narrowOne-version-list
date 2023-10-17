@@ -1,7 +1,6 @@
 /** A Project to scrape narrow one version and save it in JSON File **/
 import { JSDOM } from "jsdom";
 import fs from "fs";
-import cron from "node-cron";
 
 /**
  * Method to parse index-js file and retrive version information
@@ -109,8 +108,4 @@ const fetchHTMLcontent = async () => {
 	}
 };
 
-// Cron job running at every 12 hours
-cron.schedule("0 */12 * * *", async () => {
-	console.log(`Running Cron Job at ${new Date()}`);
-	await fetchHTMLcontent();
-});
+fetchHTMLcontent();

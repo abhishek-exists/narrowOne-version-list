@@ -31,3 +31,26 @@ jobs:
       # Run npm start
       - name: Run npm start
         run: npm start
+      
+      # Set up the Personal Access Token
+      - name: Set up PAT
+        env:
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
+          COMMIT_MESSAGE: (cron job) - new version added
+      
+      # Use the PAT to authenticate for pushing
+      - name: Authenticate with PAT
+        run: git remote set-url origin https://${PAT_TOKEN}@github.com/${{ github.repository }}.git
+      
+      # setup the username and email. Using 'GitHub Actions Bot' with no email by default
+      - name: setup git config
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+
+      # Stage the file, commit and push
+      - name: commit
+        run: |
+          git add versionList.txt
+          git commit -m "${{ env.COMMIT_MESSAGE }}"
+          git push

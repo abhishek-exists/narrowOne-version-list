@@ -36,21 +36,20 @@ jobs:
       - name: Set up PAT
         env:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
-          COMMIT_MESSAGE: (cron job) - new version added
-      
-      # Use the PAT to authenticate for pushing
+
+      # Authenticate with PAT
       - name: Authenticate with PAT
-        run: git remote set-url origin https://${PAT_TOKEN}@github.com/${{ github.repository }}.git
+        run: git remote set-url origin https://${{ env.PAT_TOKEN }}@github.com/${{ github.repository }}.git
       
-      # setup the username and email. Using 'GitHub Actions Bot' with no email by default
-      - name: setup git config
+      # Setup the username and email. Using 'GitHub Actions Bot' with no email by default
+      - name: Setup git config
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
 
       # Stage the file, commit and push
-      - name: commit
+      - name: Commit and push
         run: |
           git add versionList.txt
-          git commit -m "${{ env.COMMIT_MESSAGE }}"
+          git commit -m "(cron job) - new version added"
           git push

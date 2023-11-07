@@ -42,9 +42,14 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
 
-      # Stage the file, commit and push
-      - name: Commit and push
+      # Check if there are changes in versionList.txt
+      - name: Check for changes
         run: |
-          git add versionList.txt
-          git commit -m "(cron job) - new version added"
-          git push
+          if [[ $(git diff --name-only) == *"versionList.txt"* ]]; then
+            echo "Changes detected in versionList.txt. Committing and pushing..."
+            git add versionList.txt
+            git commit -m "(cron job) - new version added"
+            git push
+          else
+            echo "No changes detected in versionList.txt. Nothing to commit."
+          fi

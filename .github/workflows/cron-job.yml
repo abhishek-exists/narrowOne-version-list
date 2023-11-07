@@ -31,16 +31,11 @@ jobs:
       # Run npm start
       - name: Run npm start
         run: npm start
-      
-      # Set up the Personal Access Token
-      - name: Set up PAT
-        env:
-          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
 
-      # Authenticate with PAT
+      # Authenticate with PAT 
       - name: Authenticate with PAT
-        run: git remote set-url origin https://${{ env.PAT_TOKEN }}@github.com/${{ github.repository }}.git
-      
+        run: git remote set-url origin https://${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git
+
       # Setup the username and email. Using 'GitHub Actions Bot' with no email by default
       - name: Setup git config
         run: |

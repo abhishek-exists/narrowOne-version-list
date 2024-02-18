@@ -6,7 +6,7 @@ This is a [Node.JS](https://nodejs.org/en) project that maintains a list of Narr
 2. Clone this repository
 
 ```
-git clone https://github.com/abhishek276533/narrowOne-version-list
+git clone https://github.com/abhishek-exists/narrowOne-version-list.git
 ```
 
 3. `cd` into the cloned repository and run `npm start`
